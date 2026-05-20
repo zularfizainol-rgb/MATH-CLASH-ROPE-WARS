@@ -70,12 +70,14 @@ export default function App() {
             )}
           </div>
           
-          <button 
-            onClick={handleMuteToggle}
-            className="px-2 py-1 md:px-3 md:py-1.5 bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-slate-950 font-bold rounded-full shadow-[0_0_10px_rgba(234,179,8,0.3)] transition-all text-[10px] md:text-sm shrink-0"
-          >
-            {mutedRender ? '🔇 Bisu' : '🔊 Bunyi'}
-          </button>
+          <div className="w-[60px] md:w-[100px] shrink-0 flex justify-end items-start">
+            <button 
+              onClick={handleMuteToggle}
+              className="mt-6 md:mt-0 px-2 py-1 md:px-3 md:py-1.5 bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-slate-950 font-bold rounded-full shadow-[0_0_10px_rgba(234,179,8,0.3)] transition-all text-[10px] md:text-sm shrink-0 whitespace-nowrap"
+            >
+              {mutedRender ? '🔇 Bisu' : '🔊 Bunyi'}
+            </button>
+          </div>
         </div>
 
         {/* Content Container based on Status */}
