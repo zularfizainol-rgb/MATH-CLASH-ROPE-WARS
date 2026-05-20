@@ -58,7 +58,7 @@ export default function App() {
           ) : <div className="w-[60px] md:w-[100px] shrink-0"></div> /* Placeholder spacing */}
           
           <div className="text-center flex-1 min-w-0 px-2 flex flex-col items-center">
-            <h1 style={{ fontFamily: "'Rajdhani', sans-serif" }} className={`font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-400 to-fuchsia-500 filter drop-shadow-[0_0_15px_rgba(99,102,241,0.6)] whitespace-nowrap pr-2 pb-1 ${gameState === 'menu' ? 'text-xl sm:text-3xl md:text-5xl lg:text-[4.5rem]' : 'text-lg sm:text-2xl md:text-4xl'}`}>
+            <h1 style={{ fontFamily: "'Black Ops One', system-ui" }} className={`font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-400 to-fuchsia-500 filter drop-shadow-[0_0_15px_rgba(99,102,241,0.6)] whitespace-nowrap pr-2 pb-2 ${gameState === 'menu' ? 'text-2xl sm:text-4xl md:text-[3.5rem] lg:text-[4.5rem] leading-none' : 'text-lg sm:text-2xl md:text-[2rem] leading-none'}`}>
               MATH CLASH : ROPE WAR
             </h1>
             <p className={`${gameState === 'menu' ? 'text-[9px] sm:text-xs md:text-lg lg:text-xl mt-1 md:mt-2' : 'text-[8px] sm:text-[10px] md:text-sm'} text-cyan-400/90 font-bold tracking-widest uppercase whitespace-nowrap px-1`}>CABARAN DIGITAL MATEMATIK</p>
