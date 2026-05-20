@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { GameMode, GameState, Tahap } from './types';
-import { CyberGrid, CyberClouds } from './components/BackgroundElements';
+import { CyberGrid, CyberClouds, MathSymbolsBackground } from './components/BackgroundElements';
 import { Menu } from './components/Menu';
 import { Arena } from './components/Arena';
 import { ResultScreen } from './components/Result';
@@ -41,6 +41,7 @@ export default function App() {
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center p-1 md:p-4 font-['Fredoka']">
       <CyberGrid />
+      <MathSymbolsBackground />
       <CyberClouds />
 
       <div className="relative w-full max-w-4xl bg-slate-900/90 backdrop-blur-xl rounded-xl md:rounded-3xl shadow-[0_0_40px_rgba(99,102,241,0.25)] border border-indigo-500/30 p-2 sm:p-3 md:p-6 z-10 flex-1 flex flex-col min-h-[90vh]">
@@ -61,6 +62,10 @@ export default function App() {
               MATH CLASH : ROPE WAR
             </h1>
             <p className="text-[8px] sm:text-[10px] md:text-sm text-cyan-400/80 font-bold tracking-widest uppercase">CABARAN DIGITAL MATEMATIK</p>
+            <div className="flex justify-center items-center gap-4 mt-2">
+              <img src="https://i.postimg.cc/x1yzrs3k/IMG-20220901-WA0001(1).jpg" alt="Logo SK AU Keramat" referrerPolicy="no-referrer" className="h-8 sm:h-10 md:h-14 rounded-lg bg-white p-1 border shadow" />
+              <img src="https://i.postimg.cc/bYsF95Q0/IMG-20220901-WA0002(1).jpg" alt="Logo TS25" referrerPolicy="no-referrer" className="h-8 sm:h-10 md:h-14 rounded-lg bg-white p-1 border shadow" />
+            </div>
           </div>
           
           <button 

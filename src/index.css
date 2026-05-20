@@ -59,6 +59,12 @@
   to { transform: translateX(100vw); }
 }
 
+@keyframes float {
+  0% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-30px) rotate(15deg); }
+  100% { transform: translateY(0px) rotate(0deg); }
+}
+
 /* Symmetrical Positions for Teams */
 #team-left {
   position: absolute;

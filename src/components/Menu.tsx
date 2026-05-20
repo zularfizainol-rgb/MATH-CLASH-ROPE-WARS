@@ -6,31 +6,60 @@ interface MenuProps {
 }
 
 export function Menu({ onStart }: MenuProps) {
+  const [step, setStep] = useState<1 | 2>(1);
   const [tahap, setTahap] = useState<Tahap>(1);
+
+  const handleTahapSelect = (t: Tahap) => {
+    setTahap(t);
+    setStep(2);
+  };
+
+  if (step === 1) {
+    return (
+      <div className="flex flex-col items-center justify-center py-4 overflow-y-auto max-h-[80vh] w-full mt-4 md:mt-12 flex-1">
+        <div className="w-full max-w-xl text-center mb-6 md:mb-10">
+          <h2 className="text-xl md:text-3xl font-bold text-white mb-2">Pilih Tahap Permainan</h2>
+          <p className="text-slate-400 text-xs md:text-base">Sila pilih tahap kesukaran untuk bermula</p>
+        </div>
+        
+        <div className="flex flex-col sm:flex-row gap-4 md:gap-8 w-full max-w-lg px-4">
+          <button 
+            onClick={() => handleTahapSelect(1)} 
+            className="flex-1 py-8 md:py-12 px-4 rounded-3xl border-4 transition-all bg-indigo-600/30 border-indigo-500 text-white hover:bg-indigo-600/60 shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(99,102,241,0.6)] hover:scale-105 active:scale-95 flex flex-col items-center justify-center"
+          >
+            <span className="text-5xl md:text-6xl mb-4 drop-shadow-md">🚀</span>
+            <span className="font-black text-2xl md:text-3xl mb-1 tracking-wider">TAHAP 1</span>
+            <span className="text-sm md:text-base font-bold text-indigo-200">Tahun 1, 2 & 3</span>
+          </button>
+          
+          <button 
+            onClick={() => handleTahapSelect(2)} 
+            className="flex-1 py-8 md:py-12 px-4 rounded-3xl border-4 transition-all bg-fuchsia-600/30 border-fuchsia-500 text-white hover:bg-fuchsia-600/60 shadow-[0_0_20px_rgba(217,70,239,0.3)] hover:shadow-[0_0_30px_rgba(217,70,239,0.6)] hover:scale-105 active:scale-95 flex flex-col items-center justify-center"
+          >
+            <span className="text-5xl md:text-6xl mb-4 drop-shadow-md">🔥</span>
+            <span className="font-black text-2xl md:text-3xl mb-1 tracking-wider">TAHAP 2</span>
+            <span className="text-sm md:text-base font-bold text-fuchsia-200">Tahun 4, 5 & 6</span>
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="flex flex-col items-center py-2 md:py-4 overflow-y-auto max-h-[80vh] w-full">
       <div className="w-full max-w-xl bg-gradient-to-r from-indigo-950/60 to-purple-950/60 backdrop-blur-md rounded-2xl p-4 md:p-5 border border-indigo-500/30 shadow-2xl mb-4 md:mb-6 text-center transition-all">
-        <h2 className="text-lg md:text-2xl font-bold text-white mb-3">Sedia untuk pertarungan minda?</h2>
+        <button 
+          onClick={() => setStep(1)} 
+          className="mb-3 text-indigo-300 hover:text-white text-[10px] md:text-xs font-bold bg-indigo-900/50 px-3 py-1.5 rounded-full border border-indigo-700 hover:border-indigo-500 transition-all inline-flex items-center gap-1 uppercase tracking-wider"
+        >
+          <span>&larr;</span> KEMBALI PILIH TAHAP
+        </button>
         
-        <div className="flex flex-col sm:flex-row justify-center gap-2 md:gap-4 mb-4">
-          <button 
-            onClick={() => setTahap(1)} 
-            className={`flex-1 py-2 px-3 rounded-xl border-2 transition-all font-bold text-sm md:text-base ${tahap === 1 ? 'bg-indigo-600/50 border-indigo-400 text-white shadow-[0_0_15px_rgba(99,102,241,0.5)]' : 'bg-slate-800/50 border-slate-600 text-slate-400 hover:border-slate-500 hover:text-slate-200'}`}
-          >
-            🚀 TAHAP 1
-            <div className="text-[10px] font-normal mt-0.5">Tahun 1, 2 & 3</div>
-          </button>
-          <button 
-            onClick={() => setTahap(2)} 
-            className={`flex-1 py-2 px-3 rounded-xl border-2 transition-all font-bold text-sm md:text-base ${tahap === 2 ? 'bg-fuchsia-600/50 border-fuchsia-400 text-white shadow-[0_0_15px_rgba(217,70,239,0.5)]' : 'bg-slate-800/50 border-slate-600 text-slate-400 hover:border-slate-500 hover:text-slate-200'}`}
-          >
-            🔥 TAHAP 2
-            <div className="text-[10px] font-normal mt-0.5">Tahun 4, 5 & 6</div>
-          </button>
-        </div>
-
-        <div className="flex justify-center gap-2 md:gap-4">
+        <h2 className="text-lg md:text-2xl font-bold text-white mb-2">
+          {tahap === 1 ? '🚀 TAHAP 1' : '🔥 TAHAP 2'} DIPILIH
+        </h2>
+        
+        <div className="flex justify-center gap-2 md:gap-4 mt-4">
           <span className="px-2.5 py-1 bg-cyan-500/20 text-cyan-300 border border-cyan-500/30 font-bold rounded-lg text-[10px] md:text-xs tracking-wide">🔵 Pasukan Biru (Anda)</span>
           <span className="px-2.5 py-1 bg-rose-500/20 text-rose-300 border border-rose-500/30 font-bold rounded-lg text-[10px] md:text-xs tracking-wide">🔴 Pasukan Merah (Lawan)</span>
         </div>
