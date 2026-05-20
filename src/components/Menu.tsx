@@ -19,26 +19,26 @@ export function Menu({ onStart }: MenuProps) {
       <div className="flex flex-col items-center justify-center py-4 overflow-y-auto max-h-[80vh] w-full mt-4 md:mt-12 flex-1">
         <div className="w-full max-w-xl text-center mb-6 md:mb-10">
           <h2 className="text-xl md:text-3xl font-bold text-white mb-2">Pilih Tahap Permainan</h2>
-          <p className="text-slate-400 text-xs md:text-base">Sila pilih tahap kesukaran untuk bermula</p>
+          <p className="text-slate-400 text-xs md:text-base">Sila pilih tahap anda untuk bermula</p>
         </div>
         
         <div className="flex flex-col sm:flex-row gap-4 md:gap-8 w-full max-w-lg px-4">
           <button 
             onClick={() => handleTahapSelect(1)} 
-            className="flex-1 py-8 md:py-12 px-4 rounded-3xl border-4 transition-all bg-indigo-600/30 border-indigo-500 text-white hover:bg-indigo-600/60 shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(99,102,241,0.6)] hover:scale-105 active:scale-95 flex flex-col items-center justify-center"
+            className="flex-1 py-6 md:py-8 px-4 rounded-3xl border-4 transition-all bg-indigo-600/30 border-indigo-500 text-white hover:bg-indigo-600/60 shadow-[0_0_20px_rgba(99,102,241,0.3)] hover:shadow-[0_0_30px_rgba(99,102,241,0.6)] hover:scale-105 active:scale-95 flex flex-col items-center justify-center"
           >
-            <span className="text-5xl md:text-6xl mb-4 drop-shadow-md">🚀</span>
-            <span className="font-black text-2xl md:text-3xl mb-1 tracking-wider">TAHAP 1</span>
-            <span className="text-sm md:text-base font-bold text-indigo-200">Tahun 1, 2 & 3</span>
+            <span className="text-4xl md:text-5xl mb-3 drop-shadow-md">🚀</span>
+            <span className="font-black text-xl md:text-2xl mb-1 tracking-wider">TAHAP 1</span>
+            <span className="text-xs md:text-sm font-bold text-indigo-200">Tahun 1, 2 & 3</span>
           </button>
           
           <button 
             onClick={() => handleTahapSelect(2)} 
-            className="flex-1 py-8 md:py-12 px-4 rounded-3xl border-4 transition-all bg-fuchsia-600/30 border-fuchsia-500 text-white hover:bg-fuchsia-600/60 shadow-[0_0_20px_rgba(217,70,239,0.3)] hover:shadow-[0_0_30px_rgba(217,70,239,0.6)] hover:scale-105 active:scale-95 flex flex-col items-center justify-center"
+            className="flex-1 py-6 md:py-8 px-4 rounded-3xl border-4 transition-all bg-fuchsia-600/30 border-fuchsia-500 text-white hover:bg-fuchsia-600/60 shadow-[0_0_20px_rgba(217,70,239,0.3)] hover:shadow-[0_0_30px_rgba(217,70,239,0.6)] hover:scale-105 active:scale-95 flex flex-col items-center justify-center"
           >
-            <span className="text-5xl md:text-6xl mb-4 drop-shadow-md">🔥</span>
-            <span className="font-black text-2xl md:text-3xl mb-1 tracking-wider">TAHAP 2</span>
-            <span className="text-sm md:text-base font-bold text-fuchsia-200">Tahun 4, 5 & 6</span>
+            <span className="text-4xl md:text-5xl mb-3 drop-shadow-md">🔥</span>
+            <span className="font-black text-xl md:text-2xl mb-1 tracking-wider">TAHAP 2</span>
+            <span className="text-xs md:text-sm font-bold text-fuchsia-200">Tahun 4, 5 & 6</span>
           </button>
         </div>
       </div>

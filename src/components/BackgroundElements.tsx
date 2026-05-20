@@ -1,3 +1,5 @@
+import { useMemo } from 'react';
+
 export function CyberGrid() {
   return <div className="cyber-grid"></div>;
 }
@@ -5,37 +7,42 @@ export function CyberGrid() {
 export function MathSymbolsBackground() {
   const symbols = ['+', '-', '×', '÷', '=', '%', '!', '?', '>', '<', 'π', '∞'];
   const colors = [
-    'text-blue-500/20', 'text-pink-500/20', 'text-yellow-500/20', 
-    'text-green-500/20', 'text-purple-500/20', 'text-red-500/20',
-    'text-indigo-500/20', 'text-cyan-500/20', 'text-orange-500/20'
+    'text-blue-400/60', 'text-pink-400/60', 'text-yellow-400/60', 
+    'text-green-400/60', 'text-purple-400/60', 'text-red-400/60',
+    'text-indigo-400/60', 'text-cyan-400/60', 'text-orange-400/60'
   ];
+
+  const backgroundElements = useMemo(() => {
+    return Array.from({ length: 40 }).map((_, i) => {
+      const symbol = symbols[i % symbols.length];
+      const color = colors[i % colors.length];
+      const size = Math.random() * 3 + 1; // 1rem to 4rem
+      const left = Math.random() * 100;
+      const top = Math.random() * 100;
+      const animDuration = Math.random() * 10 + 10;
+      const delay = Math.random() * 10;
+      
+      return { symbol, color, size, left, top, animDuration, delay };
+    });
+  }, []);
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-      {Array.from({ length: 40 }).map((_, i) => {
-        const symbol = symbols[i % symbols.length];
-        const color = colors[i % colors.length];
-        const size = Math.random() * 3 + 1; // 1rem to 4rem
-        const left = Math.random() * 100;
-        const top = Math.random() * 100;
-        const animDuration = Math.random() * 10 + 10;
-        
-        return (
-          <div 
-            key={i}
-            className={`absolute ${color} font-black`}
-            style={{
-              left: `${left}%`,
-              top: `${top}%`,
-              fontSize: `${size}rem`,
-              animation: `float ${animDuration}s ease-in-out infinite`,
-              animationDelay: `-${Math.random() * 10}s`,
-            }}
-          >
-            {symbol}
-          </div>
-        );
-      })}
+      {backgroundElements.map((el, i) => (
+        <div 
+          key={i}
+          className={`absolute ${el.color} font-black`}
+          style={{
+            left: `${el.left}%`,
+            top: `${el.top}%`,
+            fontSize: `${el.size}rem`,
+            animation: `symbolFloat ${el.animDuration}s ease-in-out infinite`,
+            animationDelay: `-${el.delay}s`,
+          }}
+        >
+          {el.symbol}
+        </div>
+      ))}
     </div>
   );
 }

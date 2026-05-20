@@ -59,7 +59,7 @@
   to { transform: translateX(100vw); }
 }
 
-@keyframes float {
+@keyframes symbolFloat {
   0% { transform: translateY(0px) rotate(0deg); }
   50% { transform: translateY(-30px) rotate(15deg); }
   100% { transform: translateY(0px) rotate(0deg); }

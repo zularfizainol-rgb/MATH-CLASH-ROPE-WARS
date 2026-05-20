@@ -41,36 +41,38 @@ export default function App() {
   return (
     <div className="relative min-h-screen flex flex-col items-center justify-center p-1 md:p-4 font-['Fredoka']">
       <CyberGrid />
-      <MathSymbolsBackground />
       <CyberClouds />
 
-      <div className="relative w-full max-w-4xl bg-slate-900/90 backdrop-blur-xl rounded-xl md:rounded-3xl shadow-[0_0_40px_rgba(99,102,241,0.25)] border border-indigo-500/30 p-2 sm:p-3 md:p-6 z-10 flex-1 flex flex-col min-h-[90vh]">
+      <div className="relative w-full max-w-4xl bg-slate-900/90 backdrop-blur-xl rounded-xl md:rounded-3xl shadow-[0_0_40px_rgba(99,102,241,0.25)] border border-indigo-500/30 p-2 sm:p-3 md:p-6 z-10 flex-1 flex flex-col min-h-[90vh] overflow-hidden">
+        {gameState === 'menu' && <MathSymbolsBackground />}
         
         {/* Header Ribbon */}
-        <div className="flex justify-between items-center mb-2 md:mb-6 shrink-0">
+        <div className="flex justify-between items-start md:items-center mb-2 md:mb-6 shrink-0 pt-1">
           {gameState !== 'menu' ? (
             <button 
               onClick={showHome} 
-              className="px-2 py-1 md:px-4 md:py-2.5 bg-slate-800/80 hover:bg-slate-700 hover:text-cyan-400 border border-slate-700 text-slate-300 font-bold rounded-full shadow-lg transition-all text-[10px] md:text-sm transform hover:scale-105"
+              className="px-2 py-1 md:px-4 md:py-2.5 bg-slate-800/80 hover:bg-slate-700 hover:text-cyan-400 border border-slate-700 text-slate-300 font-bold rounded-full shadow-lg transition-all text-[10px] md:text-sm transform hover:scale-105 shrink-0"
             >
               🏠 Menu
             </button>
-          ) : <div className="w-[60px] md:w-[100px]"></div> /* Placeholder spacing */}
+          ) : <div className="w-[60px] md:w-[100px] shrink-0"></div> /* Placeholder spacing */}
           
-          <div className="text-center flex-1">
-            <h1 style={{ fontFamily: "'Rajdhani', sans-serif" }} className="text-lg sm:text-2xl md:text-5xl font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-400 to-fuchsia-500 filter drop-shadow-[0_0_10px_rgba(99,102,241,0.4)]">
+          <div className="text-center flex-1 min-w-0 px-2 flex flex-col items-center">
+            <h1 style={{ fontFamily: "'Rajdhani', sans-serif" }} className={`font-black tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-indigo-400 to-fuchsia-500 filter drop-shadow-[0_0_15px_rgba(99,102,241,0.6)] whitespace-nowrap pr-2 pb-1 ${gameState === 'menu' ? 'text-xl sm:text-3xl md:text-5xl lg:text-[4.5rem]' : 'text-lg sm:text-2xl md:text-4xl'}`}>
               MATH CLASH : ROPE WAR
             </h1>
-            <p className="text-[8px] sm:text-[10px] md:text-sm text-cyan-400/80 font-bold tracking-widest uppercase">CABARAN DIGITAL MATEMATIK</p>
-            <div className="flex justify-center items-center gap-4 mt-2">
-              <img src="https://i.postimg.cc/x1yzrs3k/IMG-20220901-WA0001(1).jpg" alt="Logo SK AU Keramat" referrerPolicy="no-referrer" className="h-8 sm:h-10 md:h-14 rounded-lg bg-white p-1 border shadow" />
-              <img src="https://i.postimg.cc/bYsF95Q0/IMG-20220901-WA0002(1).jpg" alt="Logo TS25" referrerPolicy="no-referrer" className="h-8 sm:h-10 md:h-14 rounded-lg bg-white p-1 border shadow" />
-            </div>
+            <p className={`${gameState === 'menu' ? 'text-[9px] sm:text-xs md:text-lg lg:text-xl mt-1 md:mt-2' : 'text-[8px] sm:text-[10px] md:text-sm'} text-cyan-400/90 font-bold tracking-widest uppercase whitespace-nowrap px-1`}>CABARAN DIGITAL MATEMATIK</p>
+            {gameState === 'menu' && (
+              <div className="flex justify-center items-center gap-4 sm:gap-6 mt-3 md:mt-5">
+                <img src="https://i.postimg.cc/x1yzrs3k/IMG-20220901-WA0001(1).jpg" alt="Logo SK AU Keramat" referrerPolicy="no-referrer" className="h-12 sm:h-16 md:h-20 lg:h-24 rounded-lg bg-white p-1 border shadow-lg" />
+                <img src="https://i.postimg.cc/bYsF95Q0/IMG-20220901-WA0002(1).jpg" alt="Logo TS25" referrerPolicy="no-referrer" className="h-12 sm:h-16 md:h-20 lg:h-24 rounded-lg bg-white p-1 border shadow-lg" />
+              </div>
+            )}
           </div>
           
           <button 
-            onClick={handleMuteToggle} 
-            className="px-2 py-1 md:px-3 md:py-1.5 bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-slate-950 font-bold rounded-full shadow-[0_0_10px_rgba(234,179,8,0.3)] transition-all text-[10px] md:text-sm"
+            onClick={handleMuteToggle}
+            className="px-2 py-1 md:px-3 md:py-1.5 bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-slate-950 font-bold rounded-full shadow-[0_0_10px_rgba(234,179,8,0.3)] transition-all text-[10px] md:text-sm shrink-0"
           >
             {mutedRender ? '🔇 Bisu' : '🔊 Bunyi'}
           </button>
