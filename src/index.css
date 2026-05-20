@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Rajdhani:wght@600;700&display=swap');
+@import "tailwindcss";
+
+@layer base {
+  html, body {
+    font-family: 'Fredoka', sans-serif;
+    background: radial-gradient(circle at center, #0f172a, #020617);
+    overflow-x: hidden;
+    user-select: none;
+    color: #f8fafc;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+  }
+  
+  /* Disable double-tap to zoom on iOS */
+  button, input {
+    touch-action: manipulation;
+  }
+}
+
+/* Cyberpunk Digital Grid Background */
+.cyber-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+      linear-gradient(to right, rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+  background-size: 30px 30px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+/* Glowing Effects */
+.glow-blue {
+  filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.6));
+}
+.glow-red {
+  filter: drop-shadow(0 0 10px rgba(239, 68, 68, 0.6));
+}
+.glow-yellow {
+  filter: drop-shadow(0 0 10px rgba(234, 179, 8, 0.6));
+}
+
+/* Cybernetic Floating Clouds */
+.cyber-cloud {
+  position: absolute;
+  background: linear-gradient(90deg, rgba(56, 189, 248, 0.1), rgba(99, 102, 241, 0.05));
+  border-radius: 9999px;
+  backdrop-filter: blur(4px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  animation: drift 30s linear infinite;
+  z-index: 0;
+}
+
+@keyframes drift {
+  from { transform: translateX(-200px); }
+  to { transform: translateX(100vw); }
+}
+
+/* Symmetrical Positions for Teams */
+#team-left {
+  position: absolute;
+  right: 50%;
+  margin-right: 120px;
+  display: flex;
+  gap: 12px;
+  bottom: 0;
+}
+
+#team-right {
+  position: absolute;
+  left: 50%;
+  margin-left: 120px;
+  display: flex;
+  gap: 12px;
+  bottom: 0;
+}
+
+@media (min-width: 768px) {
+  #team-left { margin-right: 180px; gap: 16px; }
+  #team-right { margin-left: 180px; gap: 16px; }
+}

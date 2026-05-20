@@ -1,0 +1,6 @@
+{
+  "name": "Math Clash: Rope War",
+  "description": "Permainan matematik tarik tali interaktif menyokong mod solo dan PvP.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
