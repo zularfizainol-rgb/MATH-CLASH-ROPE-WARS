@@ -12,6 +12,7 @@ interface ArenaProps {
 
 export function Arena({ mode, tahap, onWin }: ArenaProps) {
   const [ropeOffset, setRopeOffset] = useState(0);
+  const [winThreshold, setWinThreshold] = useState(() => window.innerWidth < 768 ? 120 : 180);
   
   const [question, setQuestion] = useState<QuestionData>(() => generateQuestion(tahap));
   const [p1Input, setP1Input] = useState('');
@@ -21,14 +22,22 @@ export function Arena({ mode, tahap, onWin }: ArenaProps) {
   const [statusMsg, setStatusMsg] = useState("💬 Bersedia untuk menarik!");
 
   useEffect(() => {
-      if (ropeOffset <= -180) {
+     const handleResize = () => {
+         setWinThreshold(window.innerWidth < 768 ? 120 : 180);
+     };
+     window.addEventListener('resize', handleResize);
+     return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  useEffect(() => {
+      if (ropeOffset <= -winThreshold) {
           playSound('victory');
           onWin("Pasukan Biru");
-      } else if (ropeOffset >= 180) {
+      } else if (ropeOffset >= winThreshold) {
           playSound('victory');
           onWin(mode === 1 ? "Komputer" : "Pasukan Merah");
       }
-  }, [ropeOffset, mode, onWin]);
+  }, [ropeOffset, mode, onWin, winThreshold]);
 
   // Timers
   useEffect(() => {
@@ -36,7 +45,7 @@ export function Arena({ mode, tahap, onWin }: ArenaProps) {
       setTimer(prev => {
         if (prev <= 1) {
            setRopeOffset(r => {
-             const newOff = Math.min(180, r + (mode === 1 ? 25 : 0)); // No penalty in PvP for timeout
+             const newOff = Math.min(winThreshold, r + (mode === 1 ? 25 : 0)); // No penalty in PvP for timeout
              return newOff;
            });
            playSound('wrong');
@@ -49,7 +58,7 @@ export function Arena({ mode, tahap, onWin }: ArenaProps) {
       });
     }, 1000);
     return () => clearInterval(interval);
-  }, [mode, tahap]);
+  }, [mode, tahap, winThreshold]);
 
   const handlePlayerSubmit = (player: 1 | 2) => {
       if (player === 1) {
@@ -57,14 +66,14 @@ export function Arena({ mode, tahap, onWin }: ArenaProps) {
           if (isNaN(val)) return;
           if (val === question.answer) {
               setRopeOffset(r => {
-                  return Math.max(-180, r - 22);
+                  return Math.max(-winThreshold, r - 22);
               });
               playSound('correct');
               playSound('pull');
               if (mode === 1) setStatusMsg("🎉 JAWAPAN BETUL! Tarikan yang padu!");
           } else {
               setRopeOffset(r => {
-                  return Math.min(180, r + (mode === 1 ? 18 : 15));
+                  return Math.min(winThreshold, r + (mode === 1 ? 18 : 0));
               });
               playSound('wrong');
               if (mode === 1) setStatusMsg(`❌ SALAH! Jawapan betul ialah ${question.answer}.`);
@@ -74,13 +83,13 @@ export function Arena({ mode, tahap, onWin }: ArenaProps) {
           if (isNaN(val)) return;
           if (val === question.answer) {
               setRopeOffset(r => {
-                  return Math.min(180, r + 22);
+                  return Math.min(winThreshold, r + 22);
               });
               playSound('correct');
               playSound('pull');
           } else {
               setRopeOffset(r => {
-                  return Math.max(-180, r - 15);
+                  return Math.max(-winThreshold, r - 0);
               });
               playSound('wrong');
           }
@@ -131,6 +140,9 @@ export function Arena({ mode, tahap, onWin }: ArenaProps) {
             >
                 {/* Force Rope Style */}
                 <div className="absolute w-full h-1.5 bg-gradient-to-r from-cyan-500 via-emerald-400 to-rose-500 rounded-full shadow-[0_0_10px_rgba(16,185,129,0.8)] z-0"></div>
+                
+                {/* Penanda Tali (Rope Marker) */}
+                <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-3 sm:w-4 md:w-5 h-8 sm:h-10 md:h-12 bg-yellow-400 border-2 border-red-600 rounded drop-shadow-[0_0_5px_rgba(0,0,0,0.8)] z-10"></div>
                 
                 {/* Team Left */}
                 <div id="team-left">
